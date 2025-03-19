@@ -1,0 +1,10 @@
+{
+    "username": "Test Person",
+    "email": "email",
+    "nights" : [
+        {
+            "date" : "3.19.2025",
+            "desctiption" : "Test Description"
+        }
+    ]
+}

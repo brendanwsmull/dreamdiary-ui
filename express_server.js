@@ -1,5 +1,5 @@
 import express, { json } from 'express';
-//const { iotsReadOne, ioTCreate } = require('./src/app/api/data_controller');
+import { usersReadOne, usersCreate, usersDelete, usersLogin, usersSignup } from './src/api/data_controller.js';
 const app = express();
 
 //TODO: Find out what port these should be
@@ -25,8 +25,11 @@ app.get('/api/', (req, res) => {
 });
 
 //Get the routes taken care of
-//app.get('/api/:iotid/info', iotsReadOne);
-//app.post('/api/new', ioTCreate);
+app.get('/api/:userid', usersReadOne);
+app.post('/api/:userid/:nightid', usersCreate);
+app.delete('/api/:userid/:nightid', usersDelete);
+app.get('api/account', usersLogin);
+app.post('api/account', usersSignup);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
