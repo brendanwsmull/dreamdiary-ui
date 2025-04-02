@@ -1,26 +1,24 @@
 import mongoose from 'mongoose';
-import { iotModel as iots } from './users.js';
-import { connect as db_connect } from './db.js';
+import iotModel from './users.js';
+import connect from './db.js';
 
-print(iotModel);
-db_connect();
+connect();
 
-const usersCreate = (req, res) => {
-    console.log("usersCreate Called");
-};
-const usersReadOne = (req, res) => {
+export const usersReadOne = (req, res) => {
     console.log("usersReadOne Called");
 };
-const usersUpdateOne = (req, res) => {
-    console.log("usersUpdateOne Called");
+export const usersCreate = (req, res) => {
+    console.log("usersCreate Called");
 };
-const usersDeleteOne = (req, res) => {
+export const usersDeleteOne = (req, res) => {
     console.log("usersDeleteOne Called");
 };
-
-export default {
-    usersCreate,
-    usersReadOne,
-    usersUpdateOne,
-    usersDeleteOne
-}
+export const usersUpdateOne = (req, res) => {
+    console.log("usersUpdateOne Called");
+};
+export const usersLogin = (req, res) => {
+    console.log("usersLogin Called");
+};
+export const usersSignup = (req, res) => {
+    console.log("usersSignup Called");
+};

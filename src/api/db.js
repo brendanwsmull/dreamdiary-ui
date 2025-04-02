@@ -1,14 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import iotModel from './users.js';
 const dbURL = 'mongodb://localhost:27017/IOTTracker/';  
-//const dbURL = 'mongodb+srv://cpsproductions7:SVEcZ1kQ1MSHUiqg@cluster0.qo04e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-
-//Require the schemas
-require('./users');
 
 //Export the connect function so it actually runs
 const connect = () => {
   setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, dbName: 'IOTTracker' }), 1000);
 }      
+export default connect;
 
 //set debugging
 mongoose.set('debug', true);
@@ -49,5 +47,3 @@ process.on('SIGTERM', () => {
     process.exit(0);                                     
   });                                                    
 });   
-
-exports.connect = connect;

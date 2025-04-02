@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const memberSchema = new mongoose.Schema({
     name: {
@@ -24,5 +24,4 @@ const iotSchema = new mongoose.Schema({
 })
 
 const iotModel = mongoose.model('Iot', iotSchema, "Iots");
-
-exports.iotModel = iotModel;
+export default iotModel;
