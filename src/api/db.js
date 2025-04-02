@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import iotModel from './users.js';
+import userModel from './users.js';
 const dbURL = 'mongodb://localhost:27017/IOTTracker/';  
 
 //Export the connect function so it actually runs
