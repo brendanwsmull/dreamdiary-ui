@@ -1,0 +1,43 @@
+.left-padding {
+    padding-left: 20px;
+}
+
+.textarea-style {
+    width: 90%; 
+    height: 200px;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+.sleep-input {
+    width: 100px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.dream-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.date-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.create-dream-bttn {
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+  
+.create-dream-bttn:hover {
+    background-color: #5c5c5c;
+}

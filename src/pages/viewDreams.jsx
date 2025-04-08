@@ -1,6 +1,10 @@
+import './viewDreams.css'
+
 export function ViewDreams() {
   return (
-    <p>View Page</p>
+    <div class="left-padding">
+      <p>View Page</p>
+    </div>
   )
 }
 
