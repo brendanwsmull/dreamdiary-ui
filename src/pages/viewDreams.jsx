@@ -51,9 +51,11 @@ export function ViewDreams() {
     }
     const data = await response.json();
     setDreams(data.listOfDreams)
+    console.log(data.listOfDreams);
   }
 
   const deleteDream = async (nightID) => {
+    console.log(nightID);
     const response = await fetch(`${baseURL}/api/${user}/${nightID}`, {
       method: "DELETE",
     });
@@ -88,7 +90,7 @@ export function ViewDreams() {
               <p><strong>Dream:</strong> {dream.dreamEntry}</p>
               <p><strong>Slept:</strong> {dream.sleepAmount} hours</p>
               <p><strong>Date:</strong> {dream.date}</p>
-              <button className="del-dream-bttn" onClick={() => deleteDream(dream.nightId)}>Delete</button>
+              <button className="del-dream-bttn" onClick={() => deleteDream(dream._id)}>Delete</button>
             </div>
           ))
         )
