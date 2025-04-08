@@ -34,7 +34,7 @@ export const nightsCreate = (req, res) => {
         console.log(req.body);
         user.nights.push(newNight);
         user.save();
-        return res.status(200).json({"message": "Updated user successfully"});
+        return res.json({"message": "Updated user successfully"}).status(200);
     })
 };
 export const nightsDeleteOne = (req, res) => {
