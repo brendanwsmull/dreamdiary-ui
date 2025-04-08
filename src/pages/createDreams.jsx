@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../components/userContext';
+import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import './createDreams.css'
 
@@ -8,6 +9,7 @@ export function CreateDreams() {
   const { user } = useContext(UserContext);
   const [ entry, setEntry ] = useState('');
   const [ sleepAmount, setSleepAmount ] = useState(0);
+  const navigate = useNavigate();
   const [ sleepDate, setSleepDate ] = useState(() => {
     return dayjs().subtract(1, 'day').format('YYYY-MM-DD');
   })
@@ -30,6 +32,7 @@ export function CreateDreams() {
     });
     if (response.ok) {
       console.log('dream entry added')
+      navigate('/dreams')
     }
     else {
       alert('something went wrong when making your dream');

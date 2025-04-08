@@ -61,7 +61,7 @@ export function ViewDreams() {
     });
     if (response.ok) {
       setDreams(prevDreams =>
-        prevDreams.filter(dream => dream.nightId !== nightID)
+        prevDreams.filter(dream => dream._id !== nightID)
       );
       console.log("deleted dream entry:" + nightID);
     }
