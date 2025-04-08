@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import './createDreams.css'
 
 export function CreateDreams() {
-  const baseURL = 'localhost:4000'
+  const baseURL = 'http://localhost:4000'
   const { user } = useContext(UserContext);
   const [ entry, setEntry ] = useState('');
   const [ sleepAmount, setSleepAmount ] = useState(0);
@@ -14,8 +14,9 @@ export function CreateDreams() {
 
   const addDream = async () => {
     const nightId = Date.now(); // just for now, will collide if 2 people make entry at exact same millisecond
-    data = {
+    const data = {
       userID: user,
+      nightId: nightId,
       dreamEntry: entry,
       sleepAmount: sleepAmount,
       date: sleepDate
@@ -37,7 +38,7 @@ export function CreateDreams() {
   
   return (
     <div className="left-padding">
-      <h2>Create a new Dream Entry</h2>
+      <h1>Create a new Dream Entry</h1>
       <textarea 
         className="textarea-style" 
         placeholder="Type your dream entry here..."

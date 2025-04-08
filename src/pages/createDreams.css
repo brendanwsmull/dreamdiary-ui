@@ -11,6 +11,10 @@
     border-radius: 5px;
 }
 
+h1 {
+    font-size: 2.5rem
+}
+
 .sleep-input {
     width: 100px;
     padding: 10px;
