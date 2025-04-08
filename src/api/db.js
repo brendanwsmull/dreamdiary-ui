@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 import userModel from './users.js';
-const dbURL = 'mongodb://localhost:27017/IOTTracker/';  
+const dbURL = 'mongodb://localhost:27017/Dreamdiary/';  
 
 //Export the connect function so it actually runs
 const connect = () => {
-  setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, dbName: 'IOTTracker' }), 1000);
+  setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, dbName: 'Dreamdiary' }), 1000);
 }      
 export default connect;
 

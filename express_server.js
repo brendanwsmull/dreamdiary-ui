@@ -1,5 +1,5 @@
 import express, { json } from 'express';
-import { usersReadOne, usersCreate, usersDeleteOne, usersUpdateOne, usersLogin, usersSignup } from './src/api/data_controller.js';
+import { usersReadOne, nightsCreate, nightsDeleteOne, nightsUpdateOne, usersLogin, usersSignup } from './src/api/data_controller.js';
 const app = express();
 
 //TODO: Find out what port these should be
@@ -26,9 +26,9 @@ app.get('/api/', (req, res) => {
 
 //Get the routes taken care of
 app.get('/api/:userid', usersReadOne);
-app.post('/api/:userid/:nightid', usersCreate);
-app.delete('/api/:userid/:nightid', usersDeleteOne);
-app.put('/api/:userid/:nightid', usersUpdateOne);
+app.post('/api/:userid/:nightid', nightsCreate);
+app.delete('/api/:userid/:nightid', nightsDeleteOne);
+app.put('/api/:userid/:nightid', nightsUpdateOne);
 app.get('/api/account', usersLogin);
 app.post('/api/account', usersSignup);
 

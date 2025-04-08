@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 
 const nightSchema = new mongoose.Schema({
     date: {type: Date},
-    description: {type: String}
+    dreamEntry: {type: String},
+    sleepAmount: {type: Number}
 })
 
 const userSchema = new mongoose.Schema({
@@ -13,5 +14,5 @@ const userSchema = new mongoose.Schema({
     nights: [nightSchema]
 })
 
-const userModel = mongoose.model('User', userSchema, "Users");
+const userModel = mongoose.model('User', userSchema, "users");
 export default userModel;

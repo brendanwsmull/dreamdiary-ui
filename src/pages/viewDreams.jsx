@@ -69,8 +69,8 @@ export function ViewDreams() {
   }
 
   useEffect(() => {
-    setDreams(sampleDreams); // this is for setting dreams to example list, comment out when testing api
-    // getDreams(); // uncomment this when trying to get dream entries from the api
+    //setDreams(sampleDreams); // this is for setting dreams to example list, comment out when testing api
+    getDreams(); // uncomment this when trying to get dream entries from the api
   }, []);
   
   return (
