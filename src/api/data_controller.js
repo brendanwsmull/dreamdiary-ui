@@ -66,7 +66,24 @@ export const nightsUpdateOne = (req, res) => {
 };
 export const usersLogin = (req, res) => {
     console.log("usersLogin Called");
+    //To access the account, the API needs to pass along the plain text password. The account checks the username, password and the salt value against the hash value.
+    // More or less:
+    // If username matches:
+    //   return doSaltHash(salt, password) == hash
+    //As far as the actual function used, bcrypt would probably work for our purposes.
+    //MAKE SURE THAT BOTH ARE BASE64 STRINGS!!!!!
+    return true;
 };
 export const usersSignup = (req, res) => {
     console.log("usersSignup Called");
+    //User creates an account with a username and a password. The system stores the hashed password ALONG with the salt value (used to generate the hash value)
+    //The API should send the ALREADY HASHED password.
+    newUser = {
+        username: req.body.username,
+        email: req.body.email,
+        nights: [],
+        salt: req.body.salt,
+        hash: req.body.hashedPassword
+    }
+    users.create(newUser);
 };
