@@ -43,8 +43,8 @@ export const nightsDeleteOne = (req, res) => {
     .then((user) => {
         //Find the item and remove it from the list
         //This assumes nights is an array
-        user.nights = user.nights.filter((user) => {
-            user.nightId != req.params.nightid;
+        user.nights = user.nights.filter((night) => {
+            return night._id._id != req.params.nightid;
         })
         user.save();
         return res.status(200).json({"message": "Updated user successfully"});
