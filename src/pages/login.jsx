@@ -4,6 +4,7 @@ import './Login.css';
 import { UserContext } from '../components/userContext';
 
 export default function Login() {
+  const baseURL = 'http://localhost:4000';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -11,6 +12,22 @@ export default function Login() {
 
   const handleLogin = async () => {
     console.log('Clicked Log In');
+    if (!username || !password) {
+      alert('Please enter both username and password!');
+      return 
+    }
+
+    const res = await fetch(`${baseURL}/api/account?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`, {
+      method: 'GET'
+    });
+
+    if (!res.ok) {
+      alert("Something went wrong when trying to log you in!");
+      return;
+    }
+
+    const data = await res.json();
+    setUser(data.user);
     navigate('/dreams/dreams')
   };
 

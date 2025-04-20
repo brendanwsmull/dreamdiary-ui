@@ -3,12 +3,33 @@ import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 export function CreateAccount() {
+  const baseURL = 'http://localhost:4000';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleCreateAccount = async () => {
     console.log("create account button clicked");
+    if (!username || !password) {
+      alert('Please enter both username and password!');
+      return 
+    }
+
+    const res = await fetch(`${baseURL}/api/account`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (!res.ok) {
+      alert("Error when creating your account, username may already be in use!");
+      return;
+    }
+
+    const data = await res.json();     // { user: <user_id> }
+    alert("Account created!");
     navigate('/');
   }
 
