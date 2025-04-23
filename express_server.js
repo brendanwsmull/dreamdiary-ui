@@ -31,8 +31,8 @@ app.get('/api/:userid', usersReadOne);
 app.post('/api/:userid/:nightid', nightsCreate);
 app.delete('/api/:userid/:nightid', nightsDeleteOne);
 app.put('/api/:userid/:nightid', nightsUpdateOne);
-app.get('/api/account', usersLogin);
-app.post('/api/account', usersSignup);
+app.get('/users/:username/:password', usersLogin);
+app.post('/users', usersSignup);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

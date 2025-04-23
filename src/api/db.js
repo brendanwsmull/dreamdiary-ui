@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import userModel from './users.js';
-const dbURL = 'mongodb://useradmin:pig@34.139.126.198:27017/test';  
+const dbURL = 'mongodb://visitor:a3420@34.139.126.198:27017/test';  
 
 //Export the connect function so it actually runs
 const connect = () => {

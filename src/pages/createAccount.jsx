@@ -15,7 +15,7 @@ export function CreateAccount() {
       return 
     }
 
-    const res = await fetch(`${baseURL}/api/account`, {
+    const res = await fetch(`${baseURL}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

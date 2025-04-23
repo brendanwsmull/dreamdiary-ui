@@ -8,8 +8,6 @@ const nightSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
     username: {type: String},
-    email: {type: String},
-    salt: {type: String},
     hash: {type: String},
     nights: [nightSchema]
 })

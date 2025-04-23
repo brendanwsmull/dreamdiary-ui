@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import users from './users.js';
 import connect from './db.js';
+import bcrypt from "bcryptjs";
 
 connect();
 
@@ -72,18 +73,34 @@ export const usersLogin = (req, res) => {
     //   return doSaltHash(salt, password) == hash
     //As far as the actual function used, bcrypt would probably work for our purposes.
     //MAKE SURE THAT BOTH ARE BASE64 STRINGS!!!!!
-    return true;
+    
+    //Find the user first
+    users.findOne({"username": req.params.username})
+        .then((user) => {
+            //Check the password
+            if (bcrypt.compare(req.params.password, user.hash)) {
+                return res.status(200).json({"user": user._id})
+            } else {
+                return res.status(400).json({"message": "Authentication failed."})
+            }
+        })
+    return false;
 };
 export const usersSignup = (req, res) => {
     console.log("usersSignup Called");
     //User creates an account with a username and a password. The system stores the hashed password ALONG with the salt value (used to generate the hash value)
     //The API should send the ALREADY HASHED password.
-    newUser = {
-        username: req.body.username,
-        email: req.body.email,
-        nights: [],
-        salt: req.body.salt,
-        hash: req.body.hashedPassword
-    }
-    users.create(newUser);
+
+    users.findOne({"username": req.params.username})
+        .then((user) => {return res.status(400).json({"message": "There is already an account."})})
+        .catch((_) => {
+            const hash = bcrypt.hashSync(req.body.password);
+            const newUser = {
+                username: req.body.username,
+                nights: [],
+                hash: hash
+            }
+            users.create(newUser);
+            return res.status(200).json({"message": "Signed up successfully."});
+        })
 };

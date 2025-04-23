@@ -17,7 +17,10 @@ export default function Login() {
       return 
     }
 
-    const res = await fetch(`${baseURL}/api/account?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`, {
+    //I'm changing this API call slightly to make it work better on my end
+    //original:
+    //${baseURL}/api/account?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}
+    const res = await fetch(`${baseURL}/users/${encodeURIComponent(username)}/${encodeURIComponent(password)}`, {
       method: 'GET'
     });
 
