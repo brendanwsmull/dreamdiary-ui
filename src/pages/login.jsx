@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
-import { UserContext } from '../components/userContext';
+import './login.css';
+import { UserContext } from '../components/userContext.jsx';
 
 export default function Login() {
   const baseURL = 'http://localhost:4000';

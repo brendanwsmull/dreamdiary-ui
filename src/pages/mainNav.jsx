@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Header from '../components/Header';
-import ViewDreams from './viewDreams';
-import CreateDreams from './createDreams';
+import Header from '../components/header.jsx';
+import ViewDreams from './viewDreams.jsx';
+import CreateDreams from './createDreams.jsx';
 // import './MainNav.css';
 
 export function MainApp() {

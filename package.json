@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "start": "concurrently \"npm run dev\" \"node express_server.js\"",
     "build": "vite build",
     "lint": "eslint .",
@@ -13,6 +13,7 @@
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "dayjs": "^1.11.13",
+    "dreamdiary-ui": "file:",
     "express": "^4.21.2",
     "mongoose": "^8.12.1",
     "react": "^19.0.0",

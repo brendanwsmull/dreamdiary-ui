@@ -1,6 +1,6 @@
 import './viewDreams.css'
 import { useState, useContext, useEffect } from 'react';
-import { UserContext } from '../components/userContext';
+import { UserContext } from '../components/userContext.jsx';
 
 
 export function ViewDreams() {
