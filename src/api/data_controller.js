@@ -65,7 +65,7 @@ export const nightsUpdateOne = (req, res) => {
         return res.status(200).json({"message": "Updated user successfully"});
     })
 };
-export const usersLogin = (req, res) => {
+export const usersLogin = async (req, res) => {
     console.log("usersLogin Called");
     //To access the account, the API needs to pass along the plain text password. The account checks the username, password and the salt value against the hash value.
     // More or less:
@@ -75,32 +75,29 @@ export const usersLogin = (req, res) => {
     //MAKE SURE THAT BOTH ARE BASE64 STRINGS!!!!!
     
     //Find the user first
-    users.findOne({"username": req.params.username})
-        .then((user) => {
-            //Check the password
-            if (bcrypt.compare(req.params.password, user.hash)) {
-                return res.status(200).json({"user": user._id})
-            } else {
-                return res.status(400).json({"message": "Authentication failed."})
-            }
-        })
-    return false;
+    const user = await users.findOne({"username": req.params.username});
+    // test if user not found
+    if (!user) return res.status(400).json({ "message": "User not found." });
+    // test password
+    const match = await bcrypt.compare(req.params.password, user.hash);
+    if (match) return res.status(200).json({"user": user._id});
+    else return res.status(400).json({"message": "Authentication failed."});
 };
-export const usersSignup = (req, res) => {
+export const usersSignup = async (req, res) => {
     console.log("usersSignup Called");
     //User creates an account with a username and a password. The system stores the hashed password ALONG with the salt value (used to generate the hash value)
     //The API should send the ALREADY HASHED password.
-
-    users.findOne({"username": req.params.username})
-        .then((user) => {return res.status(400).json({"message": "There is already an account."})})
-        .catch((_) => {
-            const hash = bcrypt.hashSync(req.body.password);
-            const newUser = {
-                username: req.body.username,
-                nights: [],
-                hash: hash
-            }
-            users.create(newUser);
-            return res.status(200).json({"message": "Signed up successfully."});
-        })
+    // test if user exists already
+    const existingUser = await users.findOne({username: req.body.username});
+    if (existingUser != null ) return res.status(400).json({"message": "There is already an account."});
+    // hash password and build json item
+    const hash = bcrypt.hashSync(req.body.password);
+    const newUser = {
+        username: req.body.username,
+        nights: [],
+        hash: hash
+    };
+    // create user and send ok response
+    await users.create(newUser);
+    return res.status(200).json({"message": "Signed up successfully."});
 };
