@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 8080,
+    allowedHosts: "dreamnotebook-868214160518.us-east1.run.app"
   },
 })
