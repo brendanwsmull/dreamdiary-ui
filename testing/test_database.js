@@ -20,7 +20,7 @@ const testSignup = async () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ "APItest","APItest"}),
+        body: JSON.stringify({ username: "APItest", password: "APItest"}),
       });
 }
 
