@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import './createDreams.css'
 
 export function CreateDreams() {
-  const baseURL = 'http://localhost:4000'
+  // const baseURL = 'http://localhost:4000'
   const { user } = useContext(UserContext);
   const [ entry, setEntry ] = useState('');
   const [ sleepAmount, setSleepAmount ] = useState(0);
@@ -23,7 +23,7 @@ export function CreateDreams() {
       sleepAmount: sleepAmount,
       date: sleepDate
     }
-    const response = await fetch(baseURL + `/api/${user}/${nightId}`, {
+    const response = await fetch(`/api/${user}/${nightId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

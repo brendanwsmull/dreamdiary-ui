@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 export function CreateAccount() {
-  const baseURL = 'http://localhost:4000';
+  // const baseURL = 'http://localhost:4000';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export function CreateAccount() {
       return 
     }
 
-    const res = await fetch(`${baseURL}/users`, {
+    const res = await fetch(`/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

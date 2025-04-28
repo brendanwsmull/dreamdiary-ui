@@ -4,7 +4,7 @@ import './login.css';
 import { UserContext } from '../components/userContext.jsx';
 
 export default function Login() {
-  const baseURL = 'https://localhost:4000';
+  // const baseURL = 'https://localhost:4000';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function Login() {
     //I'm changing this API call slightly to make it work better on my end
     //original:
     //${baseURL}/api/account?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}
-    const res = await fetch(`${baseURL}/users/${encodeURIComponent(username)}/${encodeURIComponent(password)}`, {
+    const res = await fetch(`/users/${encodeURIComponent(username)}/${encodeURIComponent(password)}`, {
       method: 'GET'
     });
 

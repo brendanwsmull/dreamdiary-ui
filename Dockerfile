@@ -13,9 +13,11 @@ RUN npm install
 # copy rest of project code
 COPY . .
 
+# build front end
+RUN npm run build
+
 # expose both front and back end ports
-EXPOSE 4000
 EXPOSE 8080
 
 # start the website
-CMD ["npm", "start"]
+CMD ["node", "express_server.js"]
