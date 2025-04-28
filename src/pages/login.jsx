@@ -4,7 +4,7 @@ import './login.css';
 import { UserContext } from '../components/userContext.jsx';
 
 export default function Login() {
-  const baseURL = 'https://localhost:4000/';
+  const baseURL = 'https://localhost:4000';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
