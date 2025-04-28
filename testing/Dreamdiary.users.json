@@ -3,8 +3,6 @@
     "$oid": "67db0c697d078d65a68ee6ac"
   },
   "username": "Test Person",
-  "email": "email@email.com",
-  "salt": "TEST. DO NOT USE YET",
   "hash": "TEST. DO NOT USE YET",
   "nights": [
     {

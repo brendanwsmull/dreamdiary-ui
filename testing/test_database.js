@@ -1,17 +1,27 @@
+//variables to help url stuff.
+const baseURL = 'http://localhost:4000';
+
 const displayStart = () => {
     console.log(
         "Running database testing script.\n" +
         "This runs tests to make sure the MongoDB database.\n" + 
-        "is fully connected and working.\n" + 
+        "is fully connected and working with the API.\n" + 
         "This requires the server to already be started\n" + 
         "with 'npm start'.\n"
     );
 }
 
 //Each test sends a request to the API server.
-const testSignup = () => {
+const testSignup = async () => {
     console.log("Creating a new user.");
     //"/api/account".put
+    const res = await fetch(`${baseURL}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "APItest","APItest"}),
+      });
 }
 
 const testLogin = () => {
