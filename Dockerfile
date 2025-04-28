@@ -15,7 +15,7 @@ COPY . .
 
 # expose both front and back end ports
 EXPOSE 4000
-EXPOSE 5173
+EXPOSE 8080
 
 # start the website
 CMD ["npm", "start"]
