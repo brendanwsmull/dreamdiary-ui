@@ -15,12 +15,6 @@ const displayStart = () => {
     );
 }
 
-const displayComplete = () => {
-    console.log(
-        "Testing Complete."
-    )
-}
-
 displayStart();
 
 //Do testing here
@@ -42,20 +36,25 @@ test('Logging in as a user', async () => {
           'Content-Type': 'application/json',
         }
       });
-      let body = (await response).body;
-      userid = body['user'];
+      let body = await response;
+      userid = await body.json();
+      userid = userid.user;
       expect((await response).status).toBe(200);
 })
 
 test('Creating a night', async () => {
-    nightid = Date.now();
+    nightid = "68111767ceb32cd95f82f0b5";
     const response = fetch(`${baseURL}/api/${userid}/${nightid}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({
+            _id : nightid,
+            dreamEntry : "Test Dream",
+            sleepAmount : 10,
+            date : Date.now()
+        })
       });
       expect((await response).status).toBe(200);
 })
-
-displayComplete();
