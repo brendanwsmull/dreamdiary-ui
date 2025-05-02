@@ -100,7 +100,7 @@ export function ViewDreams() {
 							<strong>Slept:</strong> {dream.sleepAmount} hours
 						</p>
 						<p>
-							<strong>Date:</strong> {dream.date}
+							<strong>Date:</strong> {new Date(dream.date).toLocaleDateString()}
 						</p>
 						<button
 							className="del-dream-bttn"
