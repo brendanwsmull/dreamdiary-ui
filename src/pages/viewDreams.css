@@ -16,6 +16,14 @@ h1 {
 	margin-right: 2rem;
 }
 
+.dream-markdown {
+    line-height: 1.6;
+}
+
+.dream-markdown p {
+    margin: 0;
+}
+
 .del-dream-bttn {
 	background-color: white;
 	cursor: pointer;
