@@ -1,6 +1,7 @@
 import "./viewDreams.css";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../components/userContext.jsx";
+import ReactMarkdown from 'react-markdown';
 
 export function ViewDreams() {
 	// const baseURL = 'http://localhost:4000';
@@ -93,7 +94,7 @@ export function ViewDreams() {
 				dreams.map((dream) => (
 					<div key={dream.nightId} className="view-dream-container">
 						<p>
-							<strong>Dream:</strong> {dream.dreamEntry}
+							<strong>Dream:</strong> <ReactMarkdown>{dream.dreamEntry}</ReactMarkdown>
 						</p>
 						<p>
 							<strong>Slept:</strong> {dream.sleepAmount} hours
