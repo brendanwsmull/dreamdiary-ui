@@ -1,16 +1,16 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const nightSchema = new mongoose.Schema({
-    date: {type: Date},
-    dreamEntry: {type: String},
-    sleepAmount: {type: Number}
-})
+	date: { type: Date },
+	dreamEntry: { type: String },
+	sleepAmount: { type: Number },
+});
 
 const userSchema = new mongoose.Schema({
-    username: {type: String},
-    hash: {type: String},
-    nights: [nightSchema]
-})
+	username: { type: String },
+	hash: { type: String },
+	nights: [nightSchema],
+});
 
-const userModel = mongoose.model('User', userSchema, "users");
+const userModel = mongoose.model("User", userSchema, "users");
 export default userModel;
