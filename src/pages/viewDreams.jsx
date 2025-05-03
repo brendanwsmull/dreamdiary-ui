@@ -96,7 +96,9 @@ export function ViewDreams() {
 						<p>
 							<div className="dream-markdown">
 								<strong>Dream:</strong>{" "}
-								<ReactMarkdown breaks>{dream.dreamEntry}</ReactMarkdown>
+								<ReactMarkdown breaks>
+									{dream.dreamEntry}
+								</ReactMarkdown>
 							</div>
 						</p>
 						<p>
