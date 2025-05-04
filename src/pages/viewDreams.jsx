@@ -2,9 +2,10 @@ import "./viewDreams.css";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../components/userContext.jsx";
 import ReactMarkdown from "react-markdown";
+import dayjs from "dayjs";
 import {
-	LineChart,
-	Line,
+	AreaChart,
+	Area,
 	XAxis,
 	YAxis,
 	Tooltip,
@@ -77,7 +78,7 @@ export function ViewDreams() {
 		// collecting stats about dream health
 		const total = list.length;
 		const sleep = list.reduce((sum, d) => sum + d.sleepAmount, 0);
-		const avg = total > 0 ? (sleep / total).toFixed(2) : 0;
+		const avg = total > 0 ? (sleep / total) : 0;
 		setTotalDreams(total);
 		setTotalSleep(sleep);
 		setAvgSleep(avg);
@@ -143,12 +144,12 @@ export function ViewDreams() {
 							</p>
 							<p>
 								<strong>Average Sleep per Dream:</strong>{" "}
-								{avgSleep} hours
+								{avgSleep.toFixed(2)} hours
 							</p>
 							<div style={{ width: "100%", height: 300 }}>
 								{/* This chart was made with recharts: https://recharts.org/en-US */}
 								<ResponsiveContainer>
-									<LineChart
+									<AreaChart
 										data={chartData}
 										width="80%"
 										length="80%"
@@ -164,13 +165,15 @@ export function ViewDreams() {
 											}}
 										/>
 										<Tooltip />
-										<Line
+										<Area
 											type="monotone"
 											dataKey="sleep"
 											stroke="#b020f7"
+											fill="#b020f7"
 											strokeWidth={2}
+											fillOpacity={0.3}
 										/>
-									</LineChart>
+									</AreaChart>
 								</ResponsiveContainer>
 							</div>
 						</div>
@@ -195,7 +198,7 @@ export function ViewDreams() {
 							</p>
 							<p>
 								<strong>Date:</strong>{" "}
-								{new Date(dream.date).toLocaleDateString()}
+								{dayjs(dream.date).format("M/D/YYYY")}
 							</p>
 							<button
 								className="del-dream-bttn"

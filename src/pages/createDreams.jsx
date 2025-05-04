@@ -23,7 +23,7 @@ export function CreateDreams() {
 			nightId: nightId,
 			dreamEntry: entry,
 			sleepAmount: sleepAmount,
-			date: sleepDate,
+			date: `${sleepDate}T12:00:00Z`,
 		};
 		const response = await fetch(`/api/${user}/${nightId}`, {
 			method: "POST",
