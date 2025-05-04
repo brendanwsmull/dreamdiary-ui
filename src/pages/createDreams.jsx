@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../components/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
+import ReactMarkdown from "react-markdown";
 import "./createDreams.css";
 
 export function CreateDreams() {
@@ -13,6 +14,7 @@ export function CreateDreams() {
 	const [sleepDate, setSleepDate] = useState(() => {
 		return dayjs().subtract(1, "day").format("YYYY-MM-DD");
 	});
+	const [previewMode, setPreviewMode] = useState(false);
 
 	const addDream = async () => {
 		const nightId = Date.now(); // just for now, will collide if 2 people make entry at exact same millisecond
@@ -41,12 +43,26 @@ export function CreateDreams() {
 	return (
 		<div className="left-padding">
 			<h1>Create a new Dream Entry</h1>
-			<textarea
-				className="textarea-style"
-				placeholder="Type your dream entry here..."
-				value={entry}
-				onChange={(e) => setEntry(e.target.value)}
-			/>
+			<button
+				className="create-dream-bttn"
+				onClick={() => setPreviewMode(!previewMode)}
+			>
+				{previewMode ? "Switch to Edit Mode" : "Preview Markdown"}
+			</button>
+			<br />
+			{previewMode ? (
+				<div className="preview-box">
+					<ReactMarkdown>{entry}</ReactMarkdown>
+				</div>
+			) : (
+				<textarea
+					className="textarea-style"
+					placeholder="Type your dream entry here..."
+					value={entry}
+					onChange={(e) => setEntry(e.target.value)}
+				/>
+			)}
+
 			<div className="dream-container">
 				<p style={{ fontSize: "1.2rem" }}>
 					How long did you sleep for?

@@ -40,8 +40,17 @@ h1 {
 	background-color: white;
 	cursor: pointer;
 	transition: background-color 0.2s ease;
+	margin-bottom: 1rem;
 }
 
 .create-dream-bttn:hover {
 	background-color: #5c5c5c;
+}
+
+.preview-box {
+	width: 90%;
+	padding: 15px;
+	font-size: 1.2rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
