@@ -28,6 +28,7 @@ h1 {
 	background-color: white;
 	cursor: pointer;
 	transition: background-color 0.2s ease;
+	margin-bottom: 1rem;
 }
 
 .del-dream-bttn:hover {

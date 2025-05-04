@@ -2,6 +2,7 @@ import "./viewDreams.css";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../components/userContext.jsx";
 import ReactMarkdown from "react-markdown";
+import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 export function ViewDreams() {
 	// const baseURL = 'http://localhost:4000';
@@ -60,7 +61,10 @@ export function ViewDreams() {
 		}
 		const data = await response.json();
 
-		const list = data.listOfDreams;
+		// sorting the list in descending order
+		const list = data.listOfDreams.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+		// collecting stats about dream health
 		const total = list.length;
 		const sleep = list.reduce((sum, d) => sum + d.sleepAmount, 0);
 		const avg = total > 0 ? (sleep / total).toFixed(2) : 0;
@@ -68,7 +72,7 @@ export function ViewDreams() {
 		setTotalSleep(sleep);
 		setAvgSleep(avg);
 
-		setDreams(data.listOfDreams);
+		setDreams(list);
 		console.log(data.listOfDreams);
 	};
 
@@ -91,6 +95,12 @@ export function ViewDreams() {
 		//setDreams(sampleDreams); // this is for setting dreams to example list, comment out when testing api
 		getDreams(); // uncomment this when trying to get dream entries from the api
 	}, []);
+
+	// get list of properly formatted list of date and dreams in left to right format
+	const chartData = [...dreams].reverse().map((dream) => ({
+		date: new Date(dream.date).toLocaleDateString(),
+		sleep: dream.sleepAmount
+	}));
 
 	return (
 		<div class="left-padding">
@@ -115,6 +125,18 @@ export function ViewDreams() {
 							<p><strong>Total Dreams:</strong> {totalDreams}</p>
 							<p><strong>Total Sleep Time:</strong> {totalSleep} hours</p>
 							<p><strong>Average Sleep per Dream:</strong> {avgSleep} hours</p>
+							<div style={{ width: '100%', height: 300 }}>
+								{ /* This chart was made with recharts: https://recharts.org/en-US */}
+								<ResponsiveContainer>
+									<LineChart data={chartData} width='80%' length='80%'>
+										<CartesianGrid strokeDasharray="5 5" />
+										<XAxis dataKey="date" />
+										<YAxis domain={[0, 12]} label={{ value: "Hours", angle: -90, position: "insideLeft" }} />
+										<Tooltip />
+										<Line type="monotone" dataKey="sleep" stroke="#b020f7" strokeWidth={2} />
+									</LineChart>
+								</ResponsiveContainer>
+							</div>
 						</div>
 					)}
 
