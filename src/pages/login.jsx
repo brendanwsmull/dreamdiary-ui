@@ -61,7 +61,7 @@ export default function Login() {
 			<button onClick={handleLogin} className="login-button">
 				Login
 			</button>
-			<p onClick={goToCreateAccount}>Create Account</p>
+			<p className="create-account" onClick={goToCreateAccount}>Create Account</p>
 		</div>
 	);
 }
