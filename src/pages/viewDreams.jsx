@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../components/userContext.jsx";
 import ReactMarkdown from "react-markdown";
 import dayjs from "dayjs";
-import Sentiment from 'sentiment';
+import Sentiment from "sentiment";
 import {
 	AreaChart,
 	Area,
@@ -26,8 +26,12 @@ export function ViewDreams() {
 	const [avgSleep, setAvgSleep] = useState("");
 	const sentiment = new Sentiment();
 	// get count of positive and nagative dream counts
-	const positiveCount = dreams.filter(dream => dream.sentimentMood === "positive").length;
-	const negativeCount = dreams.filter(dream => dream.sentimentMood === "negative").length;
+	const positiveCount = dreams.filter(
+		(dream) => dream.sentimentMood === "positive",
+	).length;
+	const negativeCount = dreams.filter(
+		(dream) => dream.sentimentMood === "negative",
+	).length;
 
 	const getDreams = async () => {
 		const response = await fetch(`/api/${user}`);
@@ -38,25 +42,25 @@ export function ViewDreams() {
 		const data = await response.json();
 
 		// sorting the list in descending order
-		const list = data.listOfDreams.sort(
-			(a, b) => new Date(b.date) - new Date(a.date),
-		).map((dream) => {
-			// Sentiment analysis done by https://www.npmjs.com/package/sentiment
-			const result = sentiment.analyze(dream.dreamEntry || "");
-			// default is neutral
-			let sentimentMood = "neutral";
-			if (result.score > 1) sentimentMood = "positive";
-			else if (result.score < -1) sentimentMood = "negative";
-			return {
-				...dream,
-				sentimentMood,
-			};
-		});
+		const list = data.listOfDreams
+			.sort((a, b) => new Date(b.date) - new Date(a.date))
+			.map((dream) => {
+				// Sentiment analysis done by https://www.npmjs.com/package/sentiment
+				const result = sentiment.analyze(dream.dreamEntry || "");
+				// default is neutral
+				let sentimentMood = "neutral";
+				if (result.score > 1) sentimentMood = "positive";
+				else if (result.score < -1) sentimentMood = "negative";
+				return {
+					...dream,
+					sentimentMood,
+				};
+			});
 
 		// collecting stats about dream health
 		const total = list.length;
 		const sleep = list.reduce((sum, d) => sum + d.sleepAmount, 0);
-		const avg = total > 0 ? (sleep / total) : 0;
+		const avg = total > 0 ? sleep / total : 0;
 		setTotalDreams(total);
 		setAvgSleep(avg);
 
@@ -94,12 +98,14 @@ export function ViewDreams() {
 	const sentimentBarData = [
 		{
 			mood: "Positive",
-			percentage: dreams.length > 0 ? (positiveCount / dreams.length) * 100 : 0,
+			percentage:
+				dreams.length > 0 ? (positiveCount / dreams.length) * 100 : 0,
 		},
 		{
 			mood: "Negative",
-			percentage: dreams.length > 0 ? (negativeCount / dreams.length) * 100 : 0,
-		}
+			percentage:
+				dreams.length > 0 ? (negativeCount / dreams.length) * 100 : 0,
+		},
 	];
 
 	return (
@@ -131,7 +137,9 @@ export function ViewDreams() {
 								<strong>Average Sleep per Dream:</strong>{" "}
 								{avgSleep.toFixed(2)} hours
 							</p>
-							<p><strong>Sleep Amount Over Time:</strong></p>
+							<p>
+								<strong>Sleep Amount Over Time:</strong>
+							</p>
 							<div style={{ width: "100%", height: 300 }}>
 								{/* This chart was made with recharts: https://recharts.org/en-US */}
 								<ResponsiveContainer>
@@ -162,7 +170,9 @@ export function ViewDreams() {
 									</AreaChart>
 								</ResponsiveContainer>
 							</div>
-							<p><strong>Sleep Sentiment Analysis:</strong></p>
+							<p>
+								<strong>Sleep Sentiment Analysis:</strong>
+							</p>
 							<div style={{ width: "100%", height: 250 }}>
 								<ResponsiveContainer>
 									<BarChart
@@ -173,14 +183,22 @@ export function ViewDreams() {
 										margin={{ left: 20 }}
 									>
 										<CartesianGrid strokeDasharray="3 3" />
-										<XAxis type="number" domain={[0, 100]} />
+										<XAxis
+											type="number"
+											domain={[0, 100]}
+										/>
 										<YAxis type="category" dataKey="mood" />
 										<Tooltip
-											formatter={(value) => [`${value.toFixed(1)}%`, "Percent of Dreams"]}
+											formatter={(value) => [
+												`${value.toFixed(1)}%`,
+												"Percent of Dreams",
+											]}
 										/>
 										<Bar dataKey="percentage">
-											<Cell fill="#32a840" /> {/* Color for positive bar */}
-											<Cell fill="#a83232" /> {/* Color for negative bar */}
+											<Cell fill="#32a840" />{" "}
+											{/* Color for positive bar */}
+											<Cell fill="#a83232" />{" "}
+											{/* Color for negative bar */}
 										</Bar>
 									</BarChart>
 								</ResponsiveContainer>
